@@ -11,7 +11,7 @@ before_install:
   - git config credential.helper "store --file=.git/credentials"
   - echo "https://$GH_TOKEN:@github.com" > .git/credentials
 install:
-- mvn install -Dmaven.test.redirectTestOutputToFile=true
+- mvn install -U -Dmaven.test.redirectTestOutputToFile=true
 env:
   global:
   - GIT_NAME="Dave Syer"
