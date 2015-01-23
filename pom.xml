@@ -7,11 +7,11 @@
 		<version>1.2.1.RELEASE</version>
 		<relativePath/>
 	</parent>
-	<artifactId>spring-cloud-netflix-samples</artifactId>
+	<artifactId>spring-cloud-samples-tests</artifactId>
 	<version>1.0.0.BUILD-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Spring Cloud Netflix Samples</name>
-	<description>Spring Cloud Netflix Samples</description>
+	<name>Spring Cloud Samples Tests</name>
+	<description>Spring Cloud Samples Tests</description>
 	<url>http://projects.spring.io/spring-cloud/</url>
 	<organization>
 		<name>Pivotal Software, Inc.</name>
@@ -19,6 +19,7 @@
 	</organization>
 	<modules>
 		<module>zuul-proxy</module>
+		<module>zuul-proxy-eureka</module>
 	</modules>
 	<build>
 		<plugins>

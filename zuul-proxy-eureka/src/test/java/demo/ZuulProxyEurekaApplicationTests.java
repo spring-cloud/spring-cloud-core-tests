@@ -1,18 +1,18 @@
 package demo;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.client.discovery.NoopDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import static org.junit.Assert.*;
+
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = ZuulProxyApplication.class)
-public class ZuulProxyApplicationTests {
+@SpringApplicationConfiguration(classes = ZuulProxyEurekaApplication.class)
+public class ZuulProxyEurekaApplicationTests {
 
 	@Autowired
 	DiscoveryClient discoveryClient;
@@ -22,7 +22,8 @@ public class ZuulProxyApplicationTests {
 	}
 
 	@Test
-	public void discoveryClientIsNoop() {
-		assertTrue("discoveryClient is wrong type", discoveryClient instanceof NoopDiscoveryClient);
+	public void discoveryClientIsEureka() {
+		assertTrue("discoveryClient is wrong type", discoveryClient instanceof EurekaDiscoveryClient);
 	}
+
 }
