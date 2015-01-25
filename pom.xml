@@ -23,6 +23,13 @@
 	</modules>
 	<build>
 		<plugins>
+	      <plugin>
+		    <!--skip deploy (this is just a test module) -->
+		    <artifactId>maven-deploy-plugin</artifactId>
+		    <configuration>
+		      <skip>true</skip>
+		    </configuration>
+	      </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
