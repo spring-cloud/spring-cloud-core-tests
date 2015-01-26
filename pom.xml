@@ -20,6 +20,7 @@
 	<modules>
 		<module>feign</module>
 		<module>feign-eureka</module>
+		<module>hystrix</module>
 		<module>zuul-proxy</module>
 		<module>zuul-proxy-eureka</module>
 	</modules>
