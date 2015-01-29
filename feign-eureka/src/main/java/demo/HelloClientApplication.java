@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.cloud.netflix.feign.FeignClientScan;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +25,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @SpringBootApplication
 @EnableDiscoveryClient
 @RestController
-@FeignClientScan
+@EnableFeignClients
 @RibbonClient(name = "hello", configuration = HelloRibbonClientConfiguration.class)
 public class HelloClientApplication {
 	@Autowired
