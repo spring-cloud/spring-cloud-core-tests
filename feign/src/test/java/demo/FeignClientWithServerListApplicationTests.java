@@ -12,6 +12,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +21,8 @@ import demo.FeignClientWithServerListApplicationTests.TestApplication;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = TestApplication.class)
-@IntegrationTest("example.ribbon.listOfServers:example.com")
+@IntegrationTest("myexample.ribbon.listOfServers:example.com")
+@DirtiesContext
 public class FeignClientWithServerListApplicationTests {
 
 	@Autowired
@@ -41,7 +43,7 @@ public class FeignClientWithServerListApplicationTests {
 	    }
 	}
 
-	@FeignClient("example")
+	@FeignClient("myexample")
 	static interface RestClient {
 		@RequestMapping(value="/", method=RequestMethod.GET)
 		String hello();
