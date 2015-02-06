@@ -27,4 +27,5 @@ public class TurbineApplicationTests {
 	public void discoveryClientIsEureka() {
 		assertTrue("discoveryClient is wrong type", discoveryClient instanceof EurekaDiscoveryClient);
 	}
+	
 }
