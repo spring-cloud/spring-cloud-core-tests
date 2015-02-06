@@ -24,7 +24,7 @@ public class TurbineApplicationTests {
 	}
 
 	@Test
-	public void discoveryClientIsNoop() {
+	public void discoveryClientIsEureka() {
 		assertTrue("discoveryClient is wrong type", discoveryClient instanceof EurekaDiscoveryClient);
 	}
 }
