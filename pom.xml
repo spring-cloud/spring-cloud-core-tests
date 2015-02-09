@@ -20,6 +20,8 @@
 	<modules>
 		<module>feign</module>
 		<module>feign-eureka</module>
+		<module>eureka-noweb</module>
+		<module>noweb</module>
 		<module>hystrix</module>
 		<module>turbine</module>
 		<module>zuul-proxy</module>
