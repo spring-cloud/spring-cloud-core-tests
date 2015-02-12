@@ -11,8 +11,10 @@ import org.springframework.cloud.client.discovery.noop.NoopDiscoveryClient;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import apps.UiApplication;
+
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = ZuulProxyApplication.class)
+@SpringApplicationConfiguration(classes = UiApplication.class)
 @DirtiesContext
 public class ZuulProxyApplicationTests {
 
