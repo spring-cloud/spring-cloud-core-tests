@@ -2,7 +2,6 @@ package demo;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.noop.NoopDiscoveryClient;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -47,10 +45,7 @@ public class DiscoveryNotWebApplicationTests {
 
 		@Override
 		public void run(String... args) throws Exception {
-			List<String> services = new ArrayList<String>();
-			for (ServiceInstance instance : client.getAllInstances()) {
-				services.add(instance.getServiceId());
-			}
+			List<String> services = client.getServices();
 			logger.info("Services: " + services);
 		}
 	}
