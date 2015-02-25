@@ -23,6 +23,7 @@
 		<module>eureka-noweb</module>
 		<module>netflix-sidecar</module>
 		<module>noweb</module>
+		<module>oauth2-ribbon</module>
 		<module>hystrix</module>
 		<module>turbine</module>
 		<module>zuul-proxy</module>
