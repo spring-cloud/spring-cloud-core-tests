@@ -1,0 +1,29 @@
+info:
+  component: Zuul Server
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  sensitive: false
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.boot: INFO
+    #com.netflix.discovery: 'OFF'
+    ROOT: INFO
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    statusPageUrlPath: /admin/info
+    healthCheckUrlPath: /admin/health
+
+management:
+  port: ${MGMT_SERVER_PORT:8766}
+
+server:
+  port: ${SERVER_PORT:8765}

@@ -26,6 +26,7 @@
 		<module>oauth2-ribbon</module>
 		<module>hystrix</module>
 		<module>turbine</module>
+		<module>zuul-config-discovery</module>
 		<module>zuul-proxy</module>
 		<module>zuul-proxy-eureka</module>
 	</modules>
