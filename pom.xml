@@ -18,6 +18,8 @@
 		<url>http://www.spring.io</url>
 	</organization>
 	<modules>
+		<module>configserver-eureka</module>
+		<module>eureka-first</module>
 		<module>feign</module>
 		<module>feign-eureka</module>
 		<module>eureka-noweb</module>

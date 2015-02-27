@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: eurekafirst
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: configserver
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+  client:
+    registryFetchIntervalSeconds: 5
+  
