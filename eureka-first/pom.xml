@@ -5,7 +5,7 @@
 
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-sample-eureka-first</artifactId>
-	<version>1.0.0.BUILD-SNAPSHOT</version>
+	<version>1.0.0.RELEASE</version>
 	<packaging>jar</packaging>
 
 	<name>spring-cloud-sample-eureka-first</name>
@@ -29,7 +29,7 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-parent</artifactId>
-			<version>1.0.0.BUILD-SNAPSHOT</version>
+			<version>1.0.0.RELEASE</version>
 			<type>pom</type>
 			<scope>import</scope>
 		</dependency>
