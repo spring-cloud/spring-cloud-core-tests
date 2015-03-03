@@ -8,7 +8,7 @@
 		<relativePath/>
 	</parent>
 	<artifactId>spring-cloud-samples-tests</artifactId>
-	<version>1.0.0.BUILD-SNAPSHOT</version>
+	<version>1.0.1.BUILD-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Spring Cloud Samples Tests</name>
 	<description>Spring Cloud Samples Tests</description>
@@ -18,6 +18,8 @@
 		<url>http://www.spring.io</url>
 	</organization>
 	<modules>
+		<module>configserver-eureka</module>
+		<module>eureka-first</module>
 		<module>feign</module>
 		<module>feign-eureka</module>
 		<module>eureka-noweb</module>

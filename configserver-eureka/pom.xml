@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.springframework.cloud</groupId>
-	<artifactId>spring-cloud-sample-netflix-sidecar</artifactId>
+	<artifactId>spring-cloud-sample-configserver-eureka</artifactId>
 	<version>1.0.1.BUILD-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>spring-cloud-sample-netflix-sidecar</name>
+	<name>spring-cloud-sample-configserver-eureka</name>
 	<description>Demo project for Spring Cloud</description>
 
 	<parent>
@@ -39,16 +39,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-zuul</artifactId>
+			<artifactId>spring-cloud-config-server</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-netflix-sidecar</artifactId>
-			<version>1.0.1.BUILD-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
