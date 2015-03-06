@@ -8,7 +8,7 @@
 	<version>1.0.1.BUILD-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>eureka-noweb</name>
+	<name>spring-cloud-sample-eureka-noweb</name>
 	<description>Demo project for Spring Cloud</description>
 
 	<parent>

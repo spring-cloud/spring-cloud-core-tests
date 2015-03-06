@@ -8,7 +8,7 @@
 	<version>1.0.1.BUILD-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>turbine</name>
+	<name>spring-cloud-sample-turbine</name>
 	<description>Demo project for Spring Cloud</description>
 
 	<parent>
