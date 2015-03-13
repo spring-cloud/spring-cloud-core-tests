@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: HelloClient
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+  client:
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: http://localhost:${eureka.port:8761}/eureka/
+    
