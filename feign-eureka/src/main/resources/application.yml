@@ -5,6 +5,10 @@ spring:
 server:
   port: 7211
 
+logging:
+  level:
+    com.netflix.discovery: 'OFF'
+
 eureka:
   password: password
   client:
