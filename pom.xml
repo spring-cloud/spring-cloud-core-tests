@@ -29,6 +29,7 @@
 		<module>oauth2-ribbon</module>
 		<module>ribbon-eureka</module>
 		<module>turbine</module>
+		<module>zuul</module>
 		<module>zuul-config-discovery</module>
 		<module>zuul-proxy</module>
 		<module>zuul-proxy-eureka</module>
