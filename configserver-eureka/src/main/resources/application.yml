@@ -13,4 +13,12 @@ eureka:
     leaseRenewalIntervalInSeconds: 10
   client:
     registryFetchIntervalSeconds: 5
-  
+
+---
+spring:
+  profiles: native
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: /tmp/
