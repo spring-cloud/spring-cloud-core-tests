@@ -16,6 +16,8 @@
 
 package apps;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -41,6 +43,11 @@ public class SimpleApplication {
 	@RequestMapping("/")
 	public String hello() {
 		return service.hello();
+	}
+	
+	@RequestMapping("/session")
+	public String session(HttpSession session) {
+		return session.getId();
 	}
 	
 	@RequestMapping("/fail")
