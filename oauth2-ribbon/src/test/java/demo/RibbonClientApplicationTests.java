@@ -12,8 +12,11 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerInterceptor;
+import org.springframework.cloud.netflix.ribbon.RibbonClientHttpRequestFactory;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2AccessDeniedException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -24,9 +27,12 @@ import org.springframework.web.client.RestTemplate;
 public class RibbonClientApplicationTests {
 
 	@Autowired
+	@LoadBalanced
 	private OAuth2RestTemplate oauth2RestTemplate;
 
 	@Autowired
+	@Qualifier("loadBalancedRestTemplate")
+	@LoadBalanced
 	private RestTemplate restTemplate;
 
 	@Rule
@@ -34,9 +40,9 @@ public class RibbonClientApplicationTests {
 
 	@Test
 	public void restTemplateHasLoadBalancer() {
-		// Just to prove that the interceptor is present...
-		assertThat(new ArrayList<Object>(restTemplate.getInterceptors()),
-				hasItem(instanceOf(LoadBalancerInterceptor.class)));
+		// Just to prove that the request factory changed...
+		assertThat(restTemplate.getRequestFactory(),
+				instanceOf(RibbonClientHttpRequestFactory.class));
 	}
 
 	@Test
@@ -47,7 +53,7 @@ public class RibbonClientApplicationTests {
 	}
 
 	@Test
-    //FIXME: why is this broken
+	// FIXME: why is this broken
 	@Ignore
 	public void useRestTemplate() throws Exception {
 		// There's nowhere to get an access token so it should fail, but in a sensible way
