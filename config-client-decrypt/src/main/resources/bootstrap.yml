@@ -1,0 +1,7 @@
+debug: true
+encrypt:
+  key: ${SECRET_KEY:foo} # normally this would be an environment variable
+spring:
+  cloud:
+    config:
+      uri: '{cipher}10360db84ecacacf224df3334b02c85b4490b94ee6e6469bf86dd077aa6667f9b84ee3b60343f2c32d61dc14141fe5d0'
