@@ -8,7 +8,7 @@
 	<version>1.0.3.BUILD-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>spring-cloud-samples-config-client</name>
+	<name>spring-cloud-sample-config-client</name>
 	<description>Demo project for Spring Cloud</description>
 
 	<parent>
