@@ -30,6 +30,7 @@
 		<module>netflix-sidecar</module>
 		<module>noweb</module>
 		<module>oauth2-ribbon</module>
+		<module>ribbon-default-config</module>
 		<module>ribbon-eureka</module>
 		<module>turbine</module>
 		<module>zuul</module>
