@@ -13,6 +13,7 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerInterceptor;
@@ -20,10 +21,13 @@ import org.springframework.cloud.netflix.ribbon.RibbonClientHttpRequestFactory;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2AccessDeniedException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = RibbonClientApplication.class)
+@IntegrationTest("debug=true")
+@WebAppConfiguration
 public class RibbonClientApplicationTests {
 
 	@Autowired
@@ -41,14 +45,14 @@ public class RibbonClientApplicationTests {
 	@Test
 	public void restTemplateHasLoadBalancer() {
 		// Just to prove that the request factory changed...
-		assertThat(restTemplate.getRequestFactory(),
+		assertThat(this.restTemplate.getRequestFactory(),
 				instanceOf(RibbonClientHttpRequestFactory.class));
 	}
 
 	@Test
 	public void oauth2RestTemplateHasLoadBalancer() {
 		// Just to prove that the interceptor is present...
-		assertThat(new ArrayList<Object>(oauth2RestTemplate.getInterceptors()),
+		assertThat(new ArrayList<Object>(this.oauth2RestTemplate.getInterceptors()),
 				hasItem(instanceOf(LoadBalancerInterceptor.class)));
 	}
 
@@ -57,8 +61,8 @@ public class RibbonClientApplicationTests {
 	@Ignore
 	public void useRestTemplate() throws Exception {
 		// There's nowhere to get an access token so it should fail, but in a sensible way
-		expected.expect(OAuth2AccessDeniedException.class);
-		oauth2RestTemplate.getForEntity("http://foo/bar", String.class);
+		this.expected.expect(OAuth2AccessDeniedException.class);
+		this.oauth2RestTemplate.getForEntity("http://foo/bar", String.class);
 	}
 
 }
