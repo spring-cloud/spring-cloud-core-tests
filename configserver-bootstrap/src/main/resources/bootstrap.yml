@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: configserver
+  cloud:
+    config:
+      server:
+        bootstrap: true
+        git:
+          uri: https://github.com/spring-cloud-samples/config-repo
+
+---
+spring:
+  profiles: native
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: /tmp/
