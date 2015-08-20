@@ -33,7 +33,9 @@
 		<module>oauth2-ribbon</module>
 		<module>ribbon-default-config</module>
 		<module>ribbon-eureka</module>
+		<module>sleuth</module>
 		<module>turbine</module>
+		<module>zipkin</module>
 		<module>zuul</module>
 		<module>zuul-config-discovery</module>
 		<module>zuul-proxy</module>
