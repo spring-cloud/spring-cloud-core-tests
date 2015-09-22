@@ -18,6 +18,7 @@
 		<url>http://www.spring.io</url>
 	</organization>
 	<modules>
+		<module>bus</module>
 		<module>config-client</module>
 		<module>config-client-decrypt</module>
 		<module>config-retry</module>
