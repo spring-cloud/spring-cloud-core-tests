@@ -19,7 +19,7 @@ public class ZipkinApplication {
 
 	// Use this for debugging (or if there is no Zipkin collector running on port 9410)
 	@Bean
-	@ConditionalOnProperty(value="sample.zipkin.enabled", havingValue="false")
+	@ConditionalOnProperty(value="sample.zipkin.enabled", havingValue="false", matchIfMissing=true)
 	public SpanCollector spanCollector() {
 		return new LoggingSpanCollector();
 	}

@@ -2,8 +2,8 @@ package demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
+import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +18,7 @@ public class FeignClientApplication {
 	}
 }
 
-@FeignClient(url = "example.com")
+@FeignClient(name = "example", url = "example.com")
 interface RestClient {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	String hello();
