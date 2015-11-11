@@ -1,7 +1,7 @@
 #sudo: false
-#cache:
-#  directories:
-#    - $HOME/.m2
+cache:
+  directories:
+    - $HOME/.m2
 language: java
 jdk:
   - oraclejdk7
@@ -10,8 +10,10 @@ before_install:
   - git config user.email "$GIT_EMAIL"
   - git config credential.helper "store --file=.git/credentials"
   - echo "https://$GH_TOKEN:@github.com" > .git/credentials
+install:
+- ./mvnw --fail-at-end --update-snapshots clean package -DskipTests=true -Dmaven.test.redirectTestOutputToFile=true
 script:
-- ./mvnw --fail-at-end --update-snapshots clean package -Dmaven.test.redirectTestOutputToFile=true
+- ./mvnw --fail-at-end clean package -Dmaven.test.redirectTestOutputToFile=true
 env:
   global:
   - GIT_NAME="Dave Syer"
