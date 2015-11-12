@@ -6,7 +6,7 @@ import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
 
-import org.junit.Ignore;
+import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -17,11 +17,17 @@ import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerInterceptor;
+import org.springframework.cloud.netflix.ribbon.RibbonClientHttpRequestFactory;
+import org.springframework.http.client.InterceptingClientHttpRequestFactory;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
-import org.springframework.security.oauth2.client.resource.OAuth2AccessDeniedException;
+import org.springframework.security.oauth2.client.resource.UserRedirectRequiredException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = RibbonClientApplication.class)
@@ -38,18 +44,24 @@ public class RibbonClientApplicationTests {
 	@LoadBalanced
 	private RestTemplate restTemplate;
 
+	private MockHttpServletRequest request = new MockHttpServletRequest();
+
 	@Rule
 	public ExpectedException expected = ExpectedException.none();
 
+	@After
+	public void clean() {
+		RequestContextHolder.resetRequestAttributes();
+	}
+
 	@Test
-	@Ignore
-	// FIXME: https://github.com/spring-cloud/spring-cloud-netflix/issues/637
 	public void restTemplateHasLoadBalancer() {
-		// Just to prove that the interceptor is present...
-		// (actually this test will fail because the type is an inner class in RibbonClientConfig
-		// not LoadBalancerInterceptor).
-		assertThat(new ArrayList<Object>(this.restTemplate.getInterceptors()),
-				hasItem(instanceOf(LoadBalancerInterceptor.class)));
+		// Just to prove that the request factory is present...
+		assertThat(this.restTemplate.getRequestFactory(),
+				instanceOf(InterceptingClientHttpRequestFactory.class));
+		assertThat(ReflectionTestUtils.getField(this.restTemplate.getRequestFactory(), "requestFactory"),
+				instanceOf(RibbonClientHttpRequestFactory.class));
+
 	}
 
 	@Test
@@ -60,11 +72,10 @@ public class RibbonClientApplicationTests {
 	}
 
 	@Test
-	// FIXME: why is this broken
-	@Ignore
 	public void useRestTemplate() throws Exception {
 		// There's nowhere to get an access token so it should fail, but in a sensible way
-		this.expected.expect(OAuth2AccessDeniedException.class);
+		this.expected.expect(UserRedirectRequiredException.class);
+		RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(this.request));
 		this.oauth2RestTemplate.getForEntity("http://foo/bar", String.class);
 	}
 
