@@ -1,0 +1,19 @@
+server:
+  port: 8888
+
+encrypt:
+  key: ${SECRET_KEY:foo} # normally this would be an environment variable
+
+spring:
+  application:
+    name: configserver
+  cloud:
+    config:
+      server:
+        bootstrap: true
+        git:
+          uri: https://github.com/spring-cloud-samples/config-repo
+        encrypt:
+          enabled: false
+        overrides:
+          info.bar: '\{cipher}762c11829d517b203ac94a0180f1950b133b83cde34296549d8fed611a9b2fb5'

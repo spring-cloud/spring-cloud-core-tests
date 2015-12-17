@@ -1,3 +1,5 @@
 spring:
   application:
     name: client
+info:
+  bar: '{cipher}db63f1b828044c38f9fab4cbe4cd2ad508380399e184691902b3c44a38e5189f'
