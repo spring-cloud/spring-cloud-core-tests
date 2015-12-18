@@ -21,6 +21,7 @@
 		<module>config-client</module>
 		<module>config-client-decrypt</module>
 		<module>config-retry</module>
+		<module>configserver</module>
 		<module>configserver-eureka</module>
 		<module>eureka-first</module>
 		<module>eureka-noweb</module>

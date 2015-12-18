@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: configserver
+
+---
+spring:
+  profiles: default
+
+encrypt:
+  key: ${SECRET_KEY:foo} # normally this would be an environment variable
+
+---
+spring:
+  profiles: rsa
+
+encrypt:
+  failOnError: false
+  keyStore:
+    location: classpath:keystore.jks
+    password: ${KEYSTORE_PASSWORD:foobar} # don't use a default in production
+    alias: test
+
