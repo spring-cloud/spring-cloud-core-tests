@@ -11,7 +11,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.client.discovery.noop.NoopDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
@@ -53,6 +53,6 @@ public class ZuulProxyApplicationTests {
 
 	@Test
 	public void discoveryClientIsNoop() {
-		assertTrue("discoveryClient is wrong type", this.discoveryClient instanceof NoopDiscoveryClient);
+		assertTrue("discoveryClient is wrong type", this.discoveryClient instanceof EurekaDiscoveryClient);
 	}
 }
