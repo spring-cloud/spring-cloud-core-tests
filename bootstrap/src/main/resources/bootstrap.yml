@@ -1,0 +1,8 @@
+spring:
+  config:
+# N.B. you don't normally want to do this in a real app. It switches 
+# off the local application.yml:
+    name: sample
+logging:
+  level:
+    org.springframework.boot: DEBUG
