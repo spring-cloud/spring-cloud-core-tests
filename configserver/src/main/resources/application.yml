@@ -13,7 +13,7 @@ spring:
 
 ---
 spring:
-  profiles: default
+  profiles: encrypt
   cloud:
     config:
       server:
