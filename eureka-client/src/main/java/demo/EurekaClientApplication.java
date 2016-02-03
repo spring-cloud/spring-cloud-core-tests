@@ -1,10 +1,9 @@
 package demo;
 
-import java.util.Map;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class EurekaClientApplication {
 
 	@RequestMapping("/good")
-	public String good(@RequestParam Map<String,String> params) {
+	public String good(@RequestParam MultiValueMap<String,String> params) {
 		System.err.println(params);
 		return "GOOD!";
 	}
