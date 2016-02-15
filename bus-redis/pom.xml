@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.springframework.cloud</groupId>
-	<artifactId>spring-cloud-sample-bus</artifactId>
+	<artifactId>bus-redis</artifactId>
 	<version>Brixton.BUILD-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>spring-cloud-sample-bus</name>
+	<name>bus-redis</name>
 	<description>Demo project for Spring Cloud</description>
 
 	<parent>
@@ -42,7 +42,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
+			<artifactId>spring-cloud-starter-bus-redis</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
