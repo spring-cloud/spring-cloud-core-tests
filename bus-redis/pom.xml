@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.springframework.cloud</groupId>
-	<artifactId>bus-redis</artifactId>
+	<artifactId>spring-cloud-sample-bus-redis</artifactId>
 	<version>Brixton.BUILD-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
