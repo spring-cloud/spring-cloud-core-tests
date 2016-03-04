@@ -1,7 +1,6 @@
 spring:
   application:
     name: bus
-
 ---
 spring:
   profiles: other
