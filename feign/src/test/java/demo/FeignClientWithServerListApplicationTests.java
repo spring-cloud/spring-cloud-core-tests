@@ -1,14 +1,12 @@
 package demo;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.context.annotation.Configuration;
@@ -19,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import demo.FeignClientWithServerListApplicationTests.TestApplication;
 
+import static org.junit.Assert.assertTrue;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = TestApplication.class)
-@IntegrationTest("myexample.ribbon.listOfServers:example.com")
+@WebIntegrationTest(randomPort = true, value = "myexample.ribbon.listOfServers:example.com")
 @DirtiesContext
 public class FeignClientWithServerListApplicationTests {
 
