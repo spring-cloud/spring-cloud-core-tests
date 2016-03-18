@@ -21,6 +21,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.7</java.version>
+		<spring-cloud-stream-binder-redis.version>1.0.0.BUILD-SNAPSHOT</spring-cloud-stream-binder-redis.version>
 	</properties>
 
 	<build>
@@ -43,6 +44,11 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-bus-redis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream-binder-redis</artifactId>
+			<version>${spring-cloud-stream-binder-redis.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
