@@ -1,9 +1,0 @@
-spring:
-  application:
-    name: bus
-
----
-spring:
-  profiles: other
-server:
-  port: 8081

@@ -19,7 +19,6 @@
 	</organization>
 	<modules>
 		<module>bus</module>
-		<module>bus-redis</module>
 		<module>config-client</module>
 		<module>config-client-decrypt</module>
 		<module>config-retry</module>
