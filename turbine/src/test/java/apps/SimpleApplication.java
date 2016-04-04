@@ -36,47 +36,47 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 @EnableCircuitBreaker
 @RestController
 public class SimpleApplication {
-	
+
 	@Autowired
 	private HelloService service;
-	
+
 	@RequestMapping("/")
 	public String hello() {
-		return service.hello();
+		return this.service.hello();
 	}
-	
+
 	@RequestMapping("/session")
 	public String session(HttpSession session) {
 		return session.getId();
 	}
-	
+
 	@RequestMapping("/fail")
 	public String fail() {
-		return service.fail();
+		return this.service.fail();
 	}
 
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(SimpleApplication.class).properties(
 				"spring.config.name:simple").run(args);
 	}
-	
+
 	@Service
 	public static class HelloService {
-		
+
 		@HystrixCommand(fallbackMethod="fallback")
 		public String hello() {
 			return "Hello World";
 		}
-		
+
 		@HystrixCommand(fallbackMethod="fallback")
 		public String fail() {
 			throw new RuntimeException("Planned");
 		}
-		
+
 		public String fallback() {
 			return "Fallback";
 		}
 
 	}
-	
+
 }
