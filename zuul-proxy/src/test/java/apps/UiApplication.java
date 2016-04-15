@@ -16,8 +16,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class UiApplication {
 
 	@RequestMapping("/")
-	public String home() {
-		return "Hello World";
+	public String home(@RequestParam(required = false) String value) {
+		return "Hello " + (value == null ? "World" : value);
 	}
 
 	@RequestMapping(value = "/upload", method = RequestMethod.GET)
@@ -37,7 +37,7 @@ public class UiApplication {
 	}
 
 	public static void main(String[] args) {
-		new SpringApplicationBuilder(UiApplication.class).properties(
-				"spring.config.name:ui").run(args);
+		new SpringApplicationBuilder(UiApplication.class)
+				.properties("spring.config.name:ui").run(args);
 	}
 }
