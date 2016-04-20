@@ -16,6 +16,7 @@
 
 package apps;
 
+import org.springframework.boot.Banner.Mode;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.config.server.EnableConfigServer;
@@ -35,7 +36,7 @@ public class ConfigServer {
 
 	public static ConfigurableApplicationContext start(String... args) {
 		return new SpringApplicationBuilder(ConfigServer.class)
-				.showBanner(false)
+				.bannerMode(Mode.OFF)
 				.profiles("native")
 				.properties("server.port=8888",
 						"spring.cloud.config.server.native.searchLocation:file:./src/test/resources/config/")
