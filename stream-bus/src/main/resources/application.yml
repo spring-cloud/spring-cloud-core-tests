@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: stream-bus
+---
+spring:
+  profiles: other
+server:
+  port: 8081

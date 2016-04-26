@@ -40,6 +40,7 @@
 		<module>ribbon-default-config</module>
 		<module>ribbon-eureka</module>
 		<module>sleuth</module>
+		<module>stream-bus</module>
 		<module>turbine</module>
 		<module>turbine-amqp</module>
 		<module>zipkin</module>
