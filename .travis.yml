@@ -4,7 +4,7 @@ sudo: false
 #    - $HOME/.m2
 language: java
 jdk:
-  - oraclejdk7
+  - oraclejdk8
 services:
   - redis-server
 before_install:
