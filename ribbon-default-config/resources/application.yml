@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: standalone
+
+server:
+  port: 7777
