@@ -5,7 +5,7 @@
 
 	<groupId>org.springframework.cloud.sample</groupId>
 	<artifactId>spring-cloud-sample-eureka-noweb</artifactId>
-	<version>Brixton.BUILD-SNAPSHOT</version>
+	<version>Brixton.RELEASE</version>
 	<packaging>jar</packaging>
 
 	<name>spring-cloud-sample-eureka-noweb</name>
@@ -23,7 +23,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Brixton.BUILD-SNAPSHOT</version>
+				<version>Brixton.RELEASE</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
