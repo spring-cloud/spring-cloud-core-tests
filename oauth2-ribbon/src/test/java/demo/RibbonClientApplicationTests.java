@@ -23,7 +23,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = RibbonClientApplication.class)
-@IntegrationTest("debug=true")
+@IntegrationTest({"debug=true", "server.port=0"})
 @WebAppConfiguration
 public class RibbonClientApplicationTests {
 
