@@ -1,0 +1,11 @@
+server:
+  port: 8989
+spring:
+  application:
+    name: turbine
+turbine:
+  appConfig: simple,other
+  aggregator:
+    clusterConfig: MAIN
+  clusterNameExpression: metadata['cluster']
+  combineHostPort: true
