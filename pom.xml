@@ -32,6 +32,7 @@
 		<module>eureka-server</module>
 		<module>feign</module>
 		<module>feign-eureka</module>
+		<module>feign-hystrix</module>
 		<module>hystrix</module>
 		<module>hystrix-amqp</module>
 		<module>netflix-sidecar</module>
