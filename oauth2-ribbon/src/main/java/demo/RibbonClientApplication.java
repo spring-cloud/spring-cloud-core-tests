@@ -19,8 +19,8 @@ public class RibbonClientApplication {
 
 	@LoadBalanced
 	@Bean
-	public OAuth2RestTemplate loadBalancedOauth2RestTemplate(
-			OAuth2ProtectedResourceDetails resource, OAuth2ClientContext context) {
+	public OAuth2RestTemplate loadBalancedOauth2RestTemplate(OAuth2ProtectedResourceDetails resource,
+			OAuth2ClientContext context) {
 		return new OAuth2RestTemplate(resource, context);
 	}
 

@@ -35,11 +35,11 @@ public class MyDefaultRibbonConfig {
 	}
 
 	@Bean
-	public ServerListSubsetFilter serverListFilter() {
-		ServerListSubsetFilter filter = new ServerListSubsetFilter();
+	public ServerListSubsetFilter<Server> serverListFilter() {
+		ServerListSubsetFilter<Server> filter = new ServerListSubsetFilter<Server>();
 		return filter;
 	}
-	
+
 	public static class BazServiceList extends ConfigurationBasedServerList {
 		public BazServiceList(IClientConfig config) {
 			super.initWithNiwsConfig(config);

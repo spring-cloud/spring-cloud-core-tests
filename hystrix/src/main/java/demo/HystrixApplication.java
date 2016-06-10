@@ -17,25 +17,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HystrixApplication {
 
-    @Bean
-    public MyService myService() {
-        return new MyService();
-    }
+	@Bean
+	public MyService myService() {
+		return new MyService();
+	}
 
-    @Autowired
-    private MyService myService;
+	@Autowired
+	private MyService myService;
 
-    @RequestMapping("/")
-    public String ok() {
-        return myService.ok();
-    }
+	@RequestMapping("/")
+	public String ok() {
+		return this.myService.ok();
+	}
 
-    @RequestMapping("/fail")
-    public String fail() {
-        return myService.fail();
-    }
+	@RequestMapping("/fail")
+	public String fail() {
+		return this.myService.fail();
+	}
 
 	public static void main(String[] args) {
-        SpringApplication.run(HystrixApplication.class, args);
-    }
+		SpringApplication.run(HystrixApplication.class, args);
+	}
 }

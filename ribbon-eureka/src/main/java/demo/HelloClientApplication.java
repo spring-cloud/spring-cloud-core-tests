@@ -17,12 +17,13 @@ import org.springframework.web.client.RestTemplate;
 @EnableDiscoveryClient
 @RestController
 public class HelloClientApplication {
+
 	@Autowired
-	RestTemplate client;
+	private RestTemplate client;
 
 	@RequestMapping("/")
 	public String hello() {
-		return client.getForObject("http://simple/", String.class);
+		return this.client.getForObject("http://simple/", String.class);
 	}
 
 	public static void main(String[] args) {

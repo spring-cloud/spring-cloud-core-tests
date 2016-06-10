@@ -28,14 +28,14 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableDiscoveryClient
 @RestController
 public class SimpleApplication {
-	
+
 	@RequestMapping("/")
 	public String hello() {
 		return "Hello";
 	}
-	
+
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(SimpleApplication.class).properties(
 				"spring.config.name:simple").run(args);
-	}	
+	}
 }

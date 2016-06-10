@@ -1,6 +1,7 @@
 package demo;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,13 +21,14 @@ public class BootstrapDecryptionClientApplicationTests {
 
 	@Autowired
 	private ConfigClientProperties config;
-	
+
 	@Autowired
 	private ConfigServicePropertySourceLocator locator;
 
 	@Test
 	public void contextLoads() throws Exception {
-		assertEquals("http://localhost:8888", config.getUri());
+		assertEquals("http://localhost:8888", this.config.getUri());
+		assertNotNull(this.locator);
 	}
 
 }

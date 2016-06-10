@@ -20,15 +20,12 @@ import com.netflix.loadbalancer.ZoneAwareLoadBalancer;
  * @author brenuart
  */
 @ComponentScan(
-		// Exclude @Configuration classes that should be included only in sub contexts created
-		// by Ribbon's SpringClientFactory.
-		excludeFilters={
-				@ComponentScan.Filter(type=FilterType.REGEX, pattern=".*RibbonConfig")
-		}
-	)
+// Exclude @Configuration classes that should be included only in sub contexts created
+// by Ribbon's SpringClientFactory.
+excludeFilters = { @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*RibbonConfig") })
 
 @SpringBootApplication
-@RibbonClients(defaultConfiguration=MyDefaultRibbonConfig.class)
+@RibbonClients(defaultConfiguration = MyDefaultRibbonConfig.class)
 @Configuration
 public class RibbonDefaultConfigApplication {
 
@@ -36,28 +33,26 @@ public class RibbonDefaultConfigApplication {
 	private SpringClientFactory clientFactory;
 
 	/**
-	 * Throws exception if the SpringClientFactory doesn't return a balancer with a server list
-	 * of the expected type.
+	 * Throws exception if the SpringClientFactory doesn't return a balancer with a server
+	 * list of the expected type.
 	 *
 	 */
-    @PostConstruct
-    public void test() throws Exception {
-    	ZoneAwareLoadBalancer<Server> lb = (ZoneAwareLoadBalancer<Server>)clientFactory.getLoadBalancer("baz");
+	@PostConstruct
+	public void test() throws Exception {
+		@SuppressWarnings("unchecked")
+		ZoneAwareLoadBalancer<Server> lb = (ZoneAwareLoadBalancer<Server>) this.clientFactory.getLoadBalancer("baz");
 
-    	ServerList<Server> serverList= lb.getServerListImpl();
-    	if( !(serverList instanceof MyDefaultRibbonConfig.BazServiceList) ) {
-    		throw new Exception("wrong server list type");
-    	}
-    }
+		ServerList<Server> serverList = lb.getServerListImpl();
+		if (!(serverList instanceof MyDefaultRibbonConfig.BazServiceList)) {
+			throw new Exception("wrong server list type");
+		}
+	}
 
-
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-    	SpringApplication app = new SpringApplicationBuilder(RibbonDefaultConfigApplication.class).build();
-    	app.run(args);
-    }
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		SpringApplication app = new SpringApplicationBuilder(RibbonDefaultConfigApplication.class).build();
+		app.run(args);
+	}
 }
-
