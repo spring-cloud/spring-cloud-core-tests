@@ -44,6 +44,7 @@
 		<module>stream-bus</module>
 		<module>turbine</module>
 		<module>turbine-amqp</module>
+		<module>vanilla</module>
 		<module>zipkin</module>
 		<module>zuul</module>
 		<module>zuul-config-discovery</module>
