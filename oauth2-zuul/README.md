@@ -1,0 +1,1 @@
+This project is a sample of a client application with OAuth2 and Zuul

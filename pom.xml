@@ -38,6 +38,7 @@
 		<module>netflix-sidecar</module>
 		<module>noweb</module>
 		<module>oauth2-ribbon</module>
+		<module>oauth2-zuul</module>
 		<module>ribbon-default-config</module>
 		<module>ribbon-eureka</module>
 		<module>sleuth</module>

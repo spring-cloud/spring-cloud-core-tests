@@ -6,7 +6,13 @@ spring:
       server:
         bootstrap: true
         git:
-          uri: https://github.com/spring-cloud-samples/config-repo
+          uri: file://${HOME}/dev/demo/config-repo
+encrypt:
+  failOnError: false
+  keyStore:
+    location: classpath:keystore.jks
+    password: ${KEYSTORE_PASSWORD:foobar} # don't use a default in production
+    alias: test
 
 ---
 spring:
