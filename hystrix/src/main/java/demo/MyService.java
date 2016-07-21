@@ -13,11 +13,15 @@ public class MyService {
 	}
 
 	@HystrixCommand(fallbackMethod = "fallback")
-	public String fail() {
-		throw new RuntimeException("fail now");
+	public String fail(boolean throwSomething) {
+		if(throwSomething)
+		  throw new RuntimeException("fail now");
+		else
+		  return "";
+
 	}
 
-	public String fallback() {
+	public String fallback(boolean throwSomething) {
 		return "from the fallback";
 	}
 }

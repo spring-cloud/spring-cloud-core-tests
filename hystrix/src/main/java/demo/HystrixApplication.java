@@ -34,9 +34,9 @@ public class HystrixApplication {
 	@RequestMapping("/fail")
 	public String fail(@RequestHeader(name = "X-No-Fail", required = false) String noFail) {
 		if (noFail != null) {
-			return this.myService.ok();
+			return this.myService.fail(false);
 		}
-		return this.myService.fail();
+		return this.myService.fail(true);
 	}
 
 	public static void main(String[] args) {
