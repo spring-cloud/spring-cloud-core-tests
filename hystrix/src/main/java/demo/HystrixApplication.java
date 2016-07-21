@@ -7,6 +7,7 @@ import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,7 +32,10 @@ public class HystrixApplication {
 	}
 
 	@RequestMapping("/fail")
-	public String fail() {
+	public String fail(@RequestHeader(name = "X-No-Fail", required = false) String noFail) {
+		if (noFail != null) {
+			return this.myService.ok();
+		}
 		return this.myService.fail();
 	}
 
