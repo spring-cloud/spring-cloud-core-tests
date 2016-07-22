@@ -21,6 +21,10 @@ public class MyService {
 
 	}
 
+	public String fallback() {
+		return "from the fallback";
+	}
+
 	public String fallback(boolean throwSomething) {
 		return "from the fallback";
 	}
