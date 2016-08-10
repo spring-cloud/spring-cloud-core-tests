@@ -23,4 +23,4 @@ while the circuit is open than the circuit will eventually close.
 ## Using The Hystrix Dashboard
 You can use the [Hystrix Dashboard](https://github.com/spring-cloud-samples/hystrix-dashboard) sample to visualize
 the state of the circuit breakers in this application.  To do this, follow the instructions in the README for the
-Hystrix Dashboard sample to start the dashboard and then point it at 'http://localhost:8080/hystrix.stream'.
+Hystrix Dashboard sample to start the dashboard and then point it at `http://localhost:8080/hystrix.stream`.
