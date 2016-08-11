@@ -13,4 +13,4 @@ dependencies:
     - ./mvnw -s .settings.xml -U --fail-never dependency:go-offline || true
 test:
   override:
-    - - ./mvnw --fail-at-end --update-snapshots clean package -Dmaven.test.redirectTestOutputToFile=true
+    - ./mvnw --fail-at-end --update-snapshots clean package -Dmaven.test.redirectTestOutputToFile=true
