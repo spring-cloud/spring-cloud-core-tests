@@ -1,0 +1,16 @@
+
+general:
+  branches:
+    ignore:
+      - gh-pages # list of branches to ignore
+machine:
+  java:
+    version: oraclejdk8
+  environment:
+    _JAVA_OPTIONS: "-Xms1024m -Xmx2048m"
+dependencies:
+  override:
+    - ./mvnw -s .settings.xml -U --fail-never dependency:go-offline || true
+test:
+  override:
+    - - ./mvnw --fail-at-end --update-snapshots clean package -Dmaven.test.redirectTestOutputToFile=true
