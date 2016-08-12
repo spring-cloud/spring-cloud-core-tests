@@ -14,5 +14,5 @@ dependencies:
 test:
   override:
     - ./mvnw --fail-at-end --update-snapshots clean package -Dmaven.test.redirectTestOutputToFile=true
-post:
+  post:
     - find . -type f -regex ".*/spring-cloud-*.*/target/*.*" | cpio -pdm $CIRCLE_ARTIFACTS
