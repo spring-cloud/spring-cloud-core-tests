@@ -1,4 +1,3 @@
-
 general:
   branches:
     ignore:
@@ -8,6 +7,8 @@ machine:
     version: oraclejdk8
   environment:
     _JAVA_OPTIONS: "-Xms1024m -Xmx2048m"
+  pre:
+    -rm .gitconfig # By default CicleCI translates https://github to ssh://github, this breaks config server tests
 dependencies:
   override:
     - ./mvnw -s .settings.xml -U --fail-never dependency:go-offline || true
