@@ -21,13 +21,15 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = TestApplication.class)
-@WebIntegrationTest(randomPort = true, value = "myexample.ribbon.listOfServers:example.com")
+//We disable Hystrix because we are not concerned about testing circuit breakers in this test
+//and it eliminates hystrix timeouts from messing with the request
+@WebIntegrationTest(randomPort = true, value = {"myexample.ribbon.listOfServers:example.com", "feign.hystrix.enabled=false"})
 @DirtiesContext
 public class FeignClientWithServerListApplicationTests {
 
 	@Autowired
 	private RestClient client;
-	
+
 	@Test
 	public void clientConnects() {
 		assertTrue(client.hello().contains("<html"));
@@ -37,29 +39,15 @@ public class FeignClientWithServerListApplicationTests {
 	@EnableAutoConfiguration
 	@EnableFeignClients
 	protected static class TestApplication {
-		
-		public static void main(String[] args) {
-	        SpringApplication.run(FeignClientApplication.class, args);
-	    }
 
-		@Bean
-		public FallbackRestClient getFallback() {
-			return new FallbackRestClient();
+		public static void main(String[] args) {
+			SpringApplication.run(FeignClientApplication.class, args);
 		}
 	}
 
-	@FeignClient(value = "myexample", fallback = FallbackRestClient.class)
+	@FeignClient(value = "myexample")
 	static interface RestClient {
 		@RequestMapping(value="/", method=RequestMethod.GET)
 		String hello();
 	}
-
-	static class FallbackRestClient implements RestClient {
-
-		@Override
-		public String hello() {
-			return "fallback";
-		}
-	}
-	
 }
