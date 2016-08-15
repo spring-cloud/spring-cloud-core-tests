@@ -17,7 +17,9 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = HelloClientApplication.class)
-@WebIntegrationTest(randomPort = true)
+//We disable Hystrix because we are not concerned about testing circuit breakers in this test
+//and it eliminates hystrix timeouts from messing with the request
+@WebIntegrationTest(randomPort = true, value="feign.hystrix.enabled=false")
 @DirtiesContext
 public class HelloClientApplicationTests {
 
