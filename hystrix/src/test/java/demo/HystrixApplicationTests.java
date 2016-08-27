@@ -57,7 +57,7 @@ public class HystrixApplicationTests {
 		byte[] buffer = new byte[1024];
 		in.read(buffer);
 		String contents = new String(buffer);
-		assertTrue("Wrong content: \n" + contents, contents.contains("data"));
+		assertTrue("Wrong content: \n" + contents, contents.contains("data") || contents.contains("ping"));
 		in.close();
 	}
 }
