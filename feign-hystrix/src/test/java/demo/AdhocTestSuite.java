@@ -21,6 +21,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+import test.FeignClientWithServerListApplicationTests;
+
 /**
  * A test suite for probing weird ordering problems in the tests.
  *

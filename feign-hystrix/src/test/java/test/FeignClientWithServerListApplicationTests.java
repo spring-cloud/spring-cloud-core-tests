@@ -1,4 +1,4 @@
-package demo;
+package test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,20 +16,22 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import demo.FeignClientWithServerListApplicationTests.TestApplication;
+import test.FeignClientWithServerListApplicationTests.TestApplication;
 
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = TestApplication.class)
-//Increase hystrix timeout or else requests timeout on CI server
-@WebIntegrationTest(randomPort = true, value = {"myexample.ribbon.listOfServers:example.com", "hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000"})
+// Increase hystrix timeout or else requests timeout on CI server
+@WebIntegrationTest(randomPort = true, value = {
+		"myexample.ribbon.listOfServers:example.com",
+		"hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000" })
 @DirtiesContext
 public class FeignClientWithServerListApplicationTests {
 
 	@Autowired
 	private RestClient client;
-	
+
 	@Test
 	public void clientConnects() {
 		assertTrue(client.hello().contains("<html"));
@@ -44,15 +46,15 @@ public class FeignClientWithServerListApplicationTests {
 		public FallbackRestClient fallbackRestClient() {
 			return new FallbackRestClient();
 		}
-		
+
 		public static void main(String[] args) {
-	        SpringApplication.run(FeignClientApplication.class, args);
-	    }
+			SpringApplication.run(TestApplication.class, args);
+		}
 	}
 
 	@FeignClient(value = "myexample", fallback = FallbackRestClient.class)
 	static interface RestClient {
-		@RequestMapping(value="/", method=RequestMethod.GET)
+		@RequestMapping(value = "/", method = RequestMethod.GET)
 		String hello();
 	}
 
@@ -63,5 +65,5 @@ public class FeignClientWithServerListApplicationTests {
 			return "fallback";
 		}
 	}
-	
+
 }
