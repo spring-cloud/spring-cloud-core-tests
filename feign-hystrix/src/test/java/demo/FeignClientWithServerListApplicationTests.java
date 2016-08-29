@@ -1,5 +1,6 @@
-package test;
+package demo;
 
+import demo.FeignClientWithServerListApplicationTests.TestApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +17,18 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import test.FeignClientWithServerListApplicationTests.TestApplication;
-
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = TestApplication.class)
-// Increase hystrix timeout or else requests timeout on CI server
-@WebIntegrationTest(randomPort = true, value = {
-		"myexample.ribbon.listOfServers:example.com",
-		"hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000" })
+//Increase hystrix timeout or else requests timeout on CI server
+@WebIntegrationTest(randomPort = true, value = {"myexample.ribbon.listOfServers:example.com", "hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000"})
 @DirtiesContext
 public class FeignClientWithServerListApplicationTests {
 
 	@Autowired
-	private RestClient client;
-
+	private ServiceRestClient client;
+	
 	@Test
 	public void clientConnects() {
 		assertTrue(client.hello().contains("<html"));
@@ -47,23 +44,28 @@ public class FeignClientWithServerListApplicationTests {
 			return new FallbackRestClient();
 		}
 
-		public static void main(String[] args) {
-			SpringApplication.run(TestApplication.class, args);
+		@Bean
+		public FallbackClient fallback() {
+			return new FallbackClient();
 		}
+
+		public static void main(String[] args) {
+	        SpringApplication.run(FeignClientApplication.class, args);
+	    }
 	}
 
 	@FeignClient(value = "myexample", fallback = FallbackRestClient.class)
-	static interface RestClient {
-		@RequestMapping(value = "/", method = RequestMethod.GET)
+	public static interface ServiceRestClient {
+		@RequestMapping(value="/", method=RequestMethod.GET)
 		String hello();
 	}
 
-	static class FallbackRestClient implements RestClient {
+	static class FallbackRestClient implements ServiceRestClient {
 
 		@Override
 		public String hello() {
 			return "fallback";
 		}
 	}
-
+	
 }

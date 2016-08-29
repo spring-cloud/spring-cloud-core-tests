@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class FeignClientApplication {
 
 	@Bean
-	public ApplicationRunner runner(final RestClient client) {
+	public ApplicationRunner runner(final UrlRestClient client) {
 		return new ApplicationRunner() {
 
 			@Override
@@ -32,13 +32,13 @@ public class FeignClientApplication {
 }
 
 @FeignClient(name = "example", url = "example.com", fallback=FallbackClient.class)
-interface RestClient {
+interface UrlRestClient {
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	String hello();
 }
 
 @Component
-class FallbackClient implements RestClient {
+class FallbackClient implements UrlRestClient {
 	@Override
 	public String hello() {
 		return "oops";
