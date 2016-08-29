@@ -44,11 +44,6 @@
 		</dependency>
 		<dependency>
 			<!-- Shouldn't be necessary -->
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-		</dependency>
-		<dependency>
-			<!-- Shouldn't be necessary -->
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
