@@ -31,6 +31,7 @@
 		<module>eureka-noweb</module>
 		<module>eureka-server</module>
 		<module>feign</module>
+		<module>feign-eager-instantiation</module>
 		<module>feign-eureka</module>
 		<module>feign-hystrix</module>
 		<module>hystrix</module>
