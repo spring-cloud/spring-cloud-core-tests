@@ -1,12 +1,16 @@
 package demo;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.cloud.netflix.ribbon.SpringClientFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.SocketUtils;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -17,6 +21,20 @@ import static org.hamcrest.Matchers.is;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @RunWith(SpringRunner.class)
 public class TomcatAppTests {
+
+	@BeforeClass
+	public static void beforeClass() {
+		int randomPort = SocketUtils.findAvailableTcpPort();
+		System.setProperty("server.port", String.valueOf(randomPort));
+	}
+
+	@AfterClass
+	public static void afterClass() {
+		System.clearProperty("server.port");
+	}
+
+	@Autowired
+	SpringClientFactory clientFactory;
 
 	@Autowired
 	private TestRestTemplate restTemplate;

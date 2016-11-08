@@ -4,7 +4,7 @@ zuul:
       path: /self/**
     example:
       path: /goodurl/**
-      url: http://localhost:1234/good
+      url: http://localhost:${server.port}/good
   set-content-length: true
 
 spring:
@@ -12,4 +12,3 @@ spring:
     name: zuul-app
 server:
   port: 1234
-
