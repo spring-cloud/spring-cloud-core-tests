@@ -52,6 +52,7 @@
 		<module>zuul-config-discovery</module>
 		<module>zuul-proxy</module>
 		<module>zuul-proxy-eureka</module>
+		<module>tomcat-7.x</module>
 	</modules>
 	<build>
 		<plugins>

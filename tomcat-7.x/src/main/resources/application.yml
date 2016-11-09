@@ -1,0 +1,14 @@
+zuul:
+  routes:
+    self:
+      path: /self/**
+    example:
+      path: /goodurl/**
+      url: http://localhost:${server.port}/good
+  set-content-length: true
+
+spring:
+  application:
+    name: zuul-app
+server:
+  port: 1234
