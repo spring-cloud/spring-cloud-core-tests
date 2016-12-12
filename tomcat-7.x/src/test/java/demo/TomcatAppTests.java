@@ -39,14 +39,12 @@ public class TomcatAppTests {
 
 
 	@Test
-	@Ignore
 	public void ribbonTest() throws Exception {
 		ResponseEntity<String> responseEntity = restTemplate.getForEntity("/self/good", String.class);
 		assertThat(responseEntity.getBody(), is("GOOD!"));
 	}
 
 	@Test
-	@Ignore
 	public void sendResponseTest() throws Exception {
 		ResponseEntity<String> responseEntity = restTemplate.getForEntity("/goodurl", String.class);
 		assertThat(responseEntity.getBody(), is("GOOD!"));
