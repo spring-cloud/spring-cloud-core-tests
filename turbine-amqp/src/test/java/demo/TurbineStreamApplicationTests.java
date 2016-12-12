@@ -25,7 +25,7 @@ public class TurbineStreamApplicationTests {
 
 	@Test
 	public void discoveryClientIsEureka() {
-		assertTrue("discoveryClient is wrong type", discoveryClient instanceof EurekaDiscoveryClient);
+		assertTrue("discoveryClient is wrong type " + discoveryClient.getClass(), discoveryClient instanceof EurekaDiscoveryClient);
 	}
 	
 }
