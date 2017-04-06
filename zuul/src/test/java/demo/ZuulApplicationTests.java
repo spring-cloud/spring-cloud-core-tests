@@ -1,20 +1,19 @@
 package demo;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.client.discovery.noop.NoopDiscoveryClient;
+import org.springframework.cloud.client.discovery.simple.SimpleDiscoveryClient;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
@@ -34,8 +33,8 @@ public class ZuulApplicationTests {
 	}
 
 	@Test
-	public void discoveryClientIsNoop() {
+	public void discoveryClientIsSimple() {
 		assertTrue("discoveryClient is wrong type",
-				this.discoveryClient instanceof NoopDiscoveryClient);
+				this.discoveryClient instanceof SimpleDiscoveryClient);
 	}
 }

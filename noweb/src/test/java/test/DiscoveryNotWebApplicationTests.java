@@ -1,7 +1,5 @@
 package test;
 
-import static org.junit.Assert.assertTrue;
-
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -13,8 +11,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.client.discovery.noop.NoopDiscoveryClient;
+import org.springframework.cloud.client.discovery.simple.SimpleDiscoveryClient;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import static org.junit.Assert.assertTrue;
 
 import demo.NotWebApplication;
 
@@ -26,13 +26,13 @@ public class DiscoveryNotWebApplicationTests {
 	private DiscoveryClient discoveryClient;
 
 	@Test
-	public void testDiscoveryClientIsNoop() {
+	public void testDiscoveryClientIsSimple() {
 		assertTrue("discoveryClient is wrong instance type",
-				discoveryClient instanceof NoopDiscoveryClient);
+				discoveryClient instanceof SimpleDiscoveryClient);
 	}
 
 	/*
-	 * This works because the NoopDiscoveryClient is installed if there is no @EnableDiscoveryClient
+	 * This works because the SimpleDiscoveryClient is installed if there is no @EnableDiscoveryClient
 	 * *and* there is no implementation on the classpath
 	 */
 	@SpringBootApplication
