@@ -20,7 +20,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>demo.TomcatApp</start-class>
         <java.version>1.7</java.version>
-        <spring-cloud.version>Dalston.BUILD-SNAPSHOT</spring-cloud.version>
+        <spring-cloud.version>Edgware.BUILD-SNAPSHOT</spring-cloud.version>
         <tomcat.version>7.0.59</tomcat.version>
     </properties>
 
