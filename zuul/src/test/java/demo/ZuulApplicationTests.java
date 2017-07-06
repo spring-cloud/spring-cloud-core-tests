@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.client.discovery.simple.SimpleDiscoveryClient;
+import org.springframework.cloud.client.discovery.composite.CompositeDiscoveryClient;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -33,8 +33,8 @@ public class ZuulApplicationTests {
 	}
 
 	@Test
-	public void discoveryClientIsSimple() {
+	public void discoveryClientIsComposite() {
 		assertTrue("discoveryClient is wrong type",
-				this.discoveryClient instanceof SimpleDiscoveryClient);
+				this.discoveryClient instanceof CompositeDiscoveryClient);
 	}
 }

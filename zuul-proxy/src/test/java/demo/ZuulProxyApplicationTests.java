@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.client.discovery.simple.SimpleDiscoveryClient;
+import org.springframework.cloud.client.discovery.composite.CompositeDiscoveryClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
@@ -51,7 +51,7 @@ public class ZuulProxyApplicationTests {
 	}
 
 	@Test
-	public void discoveryClientIsSimple() {
-		assertTrue("discoveryClient is wrong type", this.discoveryClient instanceof SimpleDiscoveryClient);
+	public void discoveryClientIsComposite() {
+		assertTrue("discoveryClient is wrong type", this.discoveryClient instanceof CompositeDiscoveryClient);
 	}
 }

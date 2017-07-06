@@ -11,7 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.client.discovery.simple.SimpleDiscoveryClient;
+import org.springframework.cloud.client.discovery.composite.CompositeDiscoveryClient;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertTrue;
@@ -28,7 +28,7 @@ public class DiscoveryNotWebApplicationTests {
 	@Test
 	public void testDiscoveryClientIsSimple() {
 		assertTrue("discoveryClient is wrong instance type",
-				discoveryClient instanceof SimpleDiscoveryClient);
+				discoveryClient instanceof CompositeDiscoveryClient);
 	}
 
 	/*
