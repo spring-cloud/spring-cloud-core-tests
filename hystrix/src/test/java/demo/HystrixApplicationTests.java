@@ -9,7 +9,7 @@ import java.net.URL;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.context.embedded.LocalServerPort;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -49,7 +49,7 @@ public class HystrixApplicationTests {
 		ResponseEntity<String> response = new TestRestTemplate().getForEntity(url, String.class);
 		assertEquals("bad response code", HttpStatus.OK, response.getStatusCode());
 
-		URL hystrixUrl = new URL(url + "/hystrix.stream");
+		URL hystrixUrl = new URL(url + "/actuator/hystrix.stream");
 		InputStream in = hystrixUrl.openStream();
 		byte[] buffer = new byte[1024];
 		in.read(buffer);

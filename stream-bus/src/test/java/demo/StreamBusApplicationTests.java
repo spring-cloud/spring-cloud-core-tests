@@ -1,8 +1,10 @@
 package demo;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +36,9 @@ public class StreamBusApplicationTests {
 	public void streaminess() throws Exception {
 		Message<String> message = MessageBuilder.withPayload("Hello").build();
 		this.source.output().send(message);
-		assertEquals(message, this.collector.forChannel(this.source.output()).take());
+		Message<?> received = this.collector.forChannel(this.source.output()).take();
+		assertThat(received.getPayload()).isEqualTo(message.getPayload());
+		assertThat(received.getHeaders()).containsKeys("contentType", "id", "timestamp");
 	}
 
 	@Test
