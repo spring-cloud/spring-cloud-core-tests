@@ -2,7 +2,6 @@ package demo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -72,23 +71,10 @@ public class StandaloneClientApplicationTests {
 		@SuppressWarnings("unchecked")
 		Map<Method, MethodInterceptor> delegates = (Map<Method, MethodInterceptor>) ReflectionTestUtils
 				.getField(advice, "delegates");
-		Object obj = delegates
+		RetryOperationsInterceptor interceptor = (RetryOperationsInterceptor) delegates
 				.values().iterator().next();
-		RetryTemplate retryTemplate = null;
-		if(RetryOperationsInterceptor.class.isInstance(obj)) {
-			//Prior to Boot 1.5.10
-			RetryOperationsInterceptor interceptor = (RetryOperationsInterceptor)obj;
-			retryTemplate = (RetryTemplate) ReflectionTestUtils.getField(
-					interceptor, "retryOperations");
-		} else if(Map.class.isInstance(obj)) {
-			//Boot 1.5.10 and later
-			Object[] methodInterceptors = ((Map)obj).values().toArray();
-			RetryOperationsInterceptor interceptor = (RetryOperationsInterceptor)methodInterceptors[1];
-			retryTemplate = (RetryTemplate)ReflectionTestUtils.getField(
-					interceptor, "retryOperations");;
-		} else {
-			fail("Could not find RetryTemplate");
-		}
+		RetryTemplate retryTemplate = (RetryTemplate) ReflectionTestUtils.getField(
+				interceptor, "retryOperations");
 		ExponentialBackOffPolicy backoff = (ExponentialBackOffPolicy) ReflectionTestUtils
 				.getField(retryTemplate, "backOffPolicy");
 		assertEquals(3000, backoff.getInitialInterval());
