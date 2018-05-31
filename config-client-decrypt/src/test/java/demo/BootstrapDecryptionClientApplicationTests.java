@@ -1,5 +1,6 @@
 package demo;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -25,7 +26,7 @@ public class BootstrapDecryptionClientApplicationTests {
 
 	@Test
 	public void contextLoads() throws Exception {
-		assertEquals("http://localhost:8888", this.config.getUri());
+		assertArrayEquals(new String[]{"http://localhost:8888"}, this.config.getUri());
 		assertNotNull(this.locator);
 	}
 
