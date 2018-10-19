@@ -11,7 +11,6 @@ public class ZuulConfigDiscoveryApplication {
 
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(ZuulConfigDiscoveryApplication.class)
-
 				.web(WebApplicationType.SERVLET).run(args);
 	}
 
