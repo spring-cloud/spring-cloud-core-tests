@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.springframework.cloud.sample</groupId>
-	<artifactId>spring-cloud-sample-eureka-first</artifactId>
+	<groupId>org.springframework.cloud.test</groupId>
+	<artifactId>spring-cloud-test-eureka-first</artifactId>
 	<version>${spring-cloud.version}</version>
 	<packaging>jar</packaging>
 
-	<name>spring-cloud-sample-eureka-first</name>
+	<name>spring-cloud-test-eureka-first</name>
 	<description>Demo project for Spring Cloud</description>
 
 	<parent>

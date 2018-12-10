@@ -21,7 +21,7 @@
 	</dependencyManagement>
 
 	<groupId>org.springframework.cloud</groupId>
-	<artifactId>spring-cloud-sample-ribbon-default-config</artifactId>
+	<artifactId>spring-cloud-test-ribbon-default-config</artifactId>
 	<version>${spring-cloud.version}</version>
 	<packaging>jar</packaging>
 

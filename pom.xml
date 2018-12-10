@@ -7,11 +7,11 @@
 		<version>2.1.0.RELEASE</version>
 		<relativePath/>
 	</parent>
-	<artifactId>spring-cloud-samples-tests</artifactId>
+	<artifactId>spring-cloud-tests</artifactId>
 	<version>Greenwich.BUILD-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Spring Cloud Samples Tests</name>
-	<description>Spring Cloud Samples Tests</description>
+	<name>Spring Cloud Core Tests</name>
+	<description>Spring Cloud Core Tests</description>
 	<url>https://projects.spring.io/spring-cloud/</url>
 	<organization>
 		<name>Pivotal Software, Inc.</name>
