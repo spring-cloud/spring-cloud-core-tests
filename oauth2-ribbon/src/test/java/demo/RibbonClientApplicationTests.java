@@ -45,7 +45,7 @@ public class RibbonClientApplicationTests {
 	public void oauth2RestTemplateHasLoadBalancer() throws Exception {
 	/*	// Just to prove that the interceptor is present...
 		ClientHttpRequest request = oauth2RestTemplate.getRequestFactory()
-				.createRequest(new URI("http://nosuchservice"), HttpMethod.GET);
+				.createRequest(new URI("https://nosuchservice"), HttpMethod.GET);
 		expected.expectMessage("No instances available for nosuchservice");
 		request.execute();*/
 	}
@@ -56,7 +56,7 @@ public class RibbonClientApplicationTests {
 		this.expected.expect(UserRedirectRequiredException.class);
 		RequestContextHolder
 				.setRequestAttributes(new ServletRequestAttributes(this.request));
-		this.oauth2RestTemplate.getForEntity("http://foo/bar", String.class);
+		this.oauth2RestTemplate.getForEntity("https://foo/bar", String.class);
 	}*/
 
 }
