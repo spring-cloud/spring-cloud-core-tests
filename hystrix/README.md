@@ -1,6 +1,6 @@
 # About
 This project is a sample of using just the Hystrix Starter.  For more information see the
-[Hystrix documentation](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#_circuit_breaker_hystrix_clients).
+[Hystrix documentation](https://cloud.spring.io/spring-cloud-static/spring-cloud.html#_circuit_breaker_hystrix_clients).
 
 # Usage
 This simple app contains two endpoints both surrounded by Hystrix circuit breakers.
