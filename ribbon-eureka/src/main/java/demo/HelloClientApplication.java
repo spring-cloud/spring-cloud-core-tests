@@ -23,7 +23,7 @@ public class HelloClientApplication {
 
 	@RequestMapping("/")
 	public String hello() {
-		return this.client.getForObject("http://simple/", String.class);
+		return this.client.getForObject("https://simple/", String.class);
 	}
 
 	public static void main(String[] args) {
