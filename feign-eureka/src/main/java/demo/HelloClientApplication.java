@@ -57,7 +57,7 @@ class HelloRibbonClientConfiguration {
 		//because of this, it doesn't use eureka to lookup the server,
 		// but the classpath is tested
 		BaseLoadBalancer balancer = new BaseLoadBalancer();
-		balancer.setServersList(Arrays.asList(new Server("example.com", 80)));
+		balancer.setServersList(Arrays.asList(new Server("example.com", 443)));
 		return balancer;
 	}
 

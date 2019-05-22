@@ -16,7 +16,7 @@ public class FeignClientApplication {
 	}
 }
 
-@FeignClient(name = "example", url = "example.com")
+@FeignClient(name = "example", url = "https://example.com")
 @RequestMapping("/")
 interface RestClient {
 	@RequestMapping(method = RequestMethod.GET)

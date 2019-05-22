@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 //Increase hystrix timeout or else requests timeout on CI server
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = {"myexample.ribbon.listOfServers:example.com", "hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000"})
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = {"myexample.ribbon.listOfServers:example.com:443",
+		"myexample.ribbon.IsSecure:true",
+		"hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000"})
 @DirtiesContext
 public class FeignClientWithServerListApplicationTests {
 

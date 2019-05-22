@@ -76,12 +76,12 @@ public class StandaloneClientApplicationTests {
 				.values().iterator().next();
 		RetryTemplate retryTemplate = null;
 		if(RetryOperationsInterceptor.class.isInstance(obj)) {
-			//Prior to Boot 1.5.10
+			//Prior to Boot 1.5.21
 			RetryOperationsInterceptor interceptor = (RetryOperationsInterceptor)obj;
 			retryTemplate = (RetryTemplate) ReflectionTestUtils.getField(
 					interceptor, "retryOperations");
 		} else if(Map.class.isInstance(obj)) {
-			//Boot 1.5.10 and later
+			//Boot 1.5.21 and later
 			Object[] methodInterceptors = ((Map)obj).values().toArray();
 			RetryOperationsInterceptor interceptor = (RetryOperationsInterceptor)methodInterceptors[0];
 			retryTemplate = (RetryTemplate)ReflectionTestUtils.getField(
