@@ -31,7 +31,7 @@ public class FeignClientApplication {
 	}
 }
 
-@FeignClient(name = "example", url = "example.com", fallback=FallbackClient.class)
+@FeignClient(name = "example", url = "https://example.com", fallback=FallbackClient.class)
 interface UrlRestClient {
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	String hello();
