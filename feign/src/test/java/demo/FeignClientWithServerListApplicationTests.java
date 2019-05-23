@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 // We disable Hystrix because we are not concerned about testing circuit breakers in this
 // test and it eliminates hystrix timeouts from messing with the request
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = {
-		"myexample.ribbon.listOfServers:example.com", "feign.hystrix.enabled=false" })
+		"myexample.ribbon.listOfServers:example.com:443",
+		"myexample.ribbon.IsSecure:true",
+		"feign.hystrix.enabled=false" })
 @DirtiesContext
 public class FeignClientWithServerListApplicationTests {
 
