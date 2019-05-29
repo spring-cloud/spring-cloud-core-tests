@@ -2,7 +2,6 @@ package demo;
 
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +22,10 @@ public class TurbineStreamApplicationTests {
 	DiscoveryClient discoveryClient;
 
 	@Test
-	@Ignore
 	public void contextLoads() {
 	}
 
 	@Test
-	@Ignore
 	public void discoveryClientIsEureka() {
 		assertTrue("discoveryClient is wrong type " + discoveryClient.getClass(), discoveryClient instanceof CompositeDiscoveryClient);
 		CompositeDiscoveryClient compositeDiscoveryClient = (CompositeDiscoveryClient)discoveryClient;

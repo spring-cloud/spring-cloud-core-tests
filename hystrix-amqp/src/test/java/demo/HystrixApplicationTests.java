@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 import java.io.InputStream;
 import java.net.URL;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -28,7 +27,6 @@ public class HystrixApplicationTests {
 	int port;
 
 	@Test
-	@Ignore
 	public void testOk() {
 		ResponseEntity<String> response = new TestRestTemplate().getForEntity("http://localhost:" + port, String.class);
 		assertNotNull("response was null", response);
@@ -37,7 +35,6 @@ public class HystrixApplicationTests {
 	}
 
 	@Test
-	@Ignore
 	public void testFallback() {
 		ResponseEntity<String> response = new TestRestTemplate().getForEntity("http://localhost:" + port+"/fail", String.class);
 		assertNotNull("response was null", response);
@@ -46,7 +43,6 @@ public class HystrixApplicationTests {
 	}
 
 	@Test
-	@Ignore
 	public void hystrixStreamWorks() throws Exception {
 		String url = "http://localhost:" + port;
 		//you have to hit a Hystrix circuit breaker before the stream sends anything
