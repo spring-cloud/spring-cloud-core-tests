@@ -2,7 +2,6 @@ package demo;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,6 @@ public class BootstrapClientApplicationTests {
 	private ServerProperties server;
 
 	@Test
-	@Ignore
 	public void contextLoads() throws Exception {
 		assertEquals(2, this.server.getTomcat().getMaxThreads());
 		// The application.yml is never read because spring.config.name=sample
