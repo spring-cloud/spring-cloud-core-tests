@@ -27,7 +27,7 @@ function build() {
     echo "Updating parent boot to [${CURRENT_BOOT_VERSION}]"
     ./mvnw versions:update-parent "-DparentVersion=(,${CURRENT_BOOT_VERSION}]" -DgenerateBackupPoms=false -DallowSnapshots=true
     echo "Running the build with cloud version [${CURRENT_CLOUD_VERSION}]"
-    ./mvnw clean install -Dspring-cloud.version="${CURRENT_CLOUD_VERSION}"
+    ./mvnw -s .settings.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dspring-cloud.version="${CURRENT_CLOUD_VERSION}" -U -P sonar -nsu --batch-mode -Dmaven.test.redirectTestOutputToFile=true -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn --fail-at-end
 }
 
 cat <<EOF
