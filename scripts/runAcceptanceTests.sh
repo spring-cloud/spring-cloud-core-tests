@@ -20,8 +20,8 @@ function cloudVersion() {
 
 CURRENT_BOOT_VERSION="${CURRENT_BOOT_VERSION:-}"
 CURRENT_CLOUD_VERSION="${CURRENT_CLOUD_VERSION:-}"
-[[ -z "${CURRENT_BOOT_VERSION}" ]] && CURRENT_BOOT_VERSION="$( bootVersion "2.2" )"
-[[ -z "${CURRENT_CLOUD_VERSION}" ]] && CURRENT_CLOUD_VERSION="$( cloudVersion "Hoxton" )"
+[[ -z "${CURRENT_BOOT_VERSION}" ]] && CURRENT_BOOT_VERSION="$( bootVersion "2.3" )"
+[[ -z "${CURRENT_CLOUD_VERSION}" ]] && CURRENT_CLOUD_VERSION="$( cloudVersion "2020.0.0" )"
 
 function build() {
     echo "Updating parent boot to [${CURRENT_BOOT_VERSION}]"
