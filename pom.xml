@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.0.RELEASE</version>
+		<version>2.3.1.BUILD-SNAPSHOT</version>
 		<relativePath/>
 	</parent>
 	<artifactId>spring-cloud-tests</artifactId>
@@ -33,25 +33,25 @@
 		<module>feign</module>
 		<module>feign-eager-instantiation</module>
 		<module>feign-eureka</module>
-		<module>feign-hystrix</module>
+		<!-- <module>feign-hystrix</module>
 		<module>hystrix</module>
 		<module>hystrix-amqp</module>
-		<module>netflix-sidecar</module>
+		<module>netflix-sidecar</module> -->
 		<module>noweb</module>
-		<module>oauth2-ribbon</module>
-		<module>oauth2-zuul</module>
-		<module>ribbon-default-config</module>
-		<module>ribbon-eureka</module>
+		<!-- <module>oauth2-ribbon</module> -->
+		<!-- <module>oauth2-zuul</module> -->
+		<!-- <module>ribbon-default-config</module>
+		<module>ribbon-eureka</module> -->
 		<module>sleuth</module>
 		<module>stream-bus</module>
-		<module>turbine</module>
-		<module>turbine-amqp</module>
+		<!-- <module>turbine</module>
+		<module>turbine-amqp</module> -->
 		<module>vanilla</module>
 		<module>zipkin</module>
-		<module>zuul</module>
+		<!-- <module>zuul</module>
 		<module>zuul-config-discovery</module>
 		<module>zuul-proxy</module>
-		<module>zuul-proxy-eureka</module>
+		<module>zuul-proxy-eureka</module> -->
 	</modules>
 	<build>
 		<plugins>
