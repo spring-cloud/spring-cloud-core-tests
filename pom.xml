@@ -33,25 +33,16 @@
 		<module>feign</module>
 		<module>feign-eager-instantiation</module>
 		<module>feign-eureka</module>
-		<!-- <module>feign-hystrix</module>
-		<module>hystrix</module>
-		<module>hystrix-amqp</module>
-		<module>netflix-sidecar</module> -->
+		<!--<module>netflix-sidecar</module>-->
 		<module>noweb</module>
-		<!-- <module>oauth2-ribbon</module> -->
-		<!-- <module>oauth2-zuul</module> -->
-		<!-- <module>ribbon-default-config</module>
-		<module>ribbon-eureka</module> -->
+		<!-- TODO: replace ribbon with spring cloud loadbalancer -->
+		<!--<module>oauth2-ribbon</module>
+		<module>ribbon-default-config</module>
+		<module>ribbon-eureka</module>-->
 		<module>sleuth</module>
 		<module>stream-bus</module>
-		<!-- <module>turbine</module>
-		<module>turbine-amqp</module> -->
 		<module>vanilla</module>
 		<module>zipkin</module>
-		<!-- <module>zuul</module>
-		<module>zuul-config-discovery</module>
-		<module>zuul-proxy</module>
-		<module>zuul-proxy-eureka</module> -->
 	</modules>
 	<build>
 		<plugins>

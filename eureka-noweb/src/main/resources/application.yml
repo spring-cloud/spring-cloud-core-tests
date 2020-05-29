@@ -4,3 +4,5 @@ spring:
 
 server:
   port: 7788
+
+debug: true
