@@ -26,6 +26,7 @@ import org.springframework.retry.support.RetryTemplate;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.util.SocketUtils;
 
 import apps.ConfigServer;
 
@@ -43,6 +44,8 @@ public class ConfigClientRetryApplicationTests {
 
 	@BeforeClass
 	public static void delayConfigServer() {
+		int port = SocketUtils.findAvailableTcpPort();
+		System.setProperty("spring.cloud.config.uri", "http://localhost:" + port);
 		Executors.newSingleThreadExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
@@ -51,7 +54,7 @@ public class ConfigClientRetryApplicationTests {
 				}
 				catch (InterruptedException e) {
 				}
-				context = ConfigServer.start();
+				context = ConfigServer.start("--server.port=" + port);
 			}
 		});
 	}
@@ -75,20 +78,12 @@ public class ConfigClientRetryApplicationTests {
 		Object obj = delegates
 				.values().iterator().next();
 		RetryTemplate retryTemplate = null;
-		if(RetryOperationsInterceptor.class.isInstance(obj)) {
-			//Prior to Boot 1.5.10
-			RetryOperationsInterceptor interceptor = (RetryOperationsInterceptor)obj;
-			retryTemplate = (RetryTemplate) ReflectionTestUtils.getField(
-					interceptor, "retryOperations");
-		} else if(Map.class.isInstance(obj)) {
-			//Boot 1.5.10 and later
-			Object[] methodInterceptors = ((Map)obj).values().toArray();
-			RetryOperationsInterceptor interceptor = (RetryOperationsInterceptor)methodInterceptors[0];
-			retryTemplate = (RetryTemplate)ReflectionTestUtils.getField(
-					interceptor, "retryOperations");;
-		} else {
-			fail("Could not find RetryTemplate");
-		}
+
+		Object[] methodInterceptors = ((Map)obj).values().toArray();
+		RetryOperationsInterceptor interceptor = (RetryOperationsInterceptor)methodInterceptors[0];
+		retryTemplate = (RetryTemplate)ReflectionTestUtils.getField(
+				interceptor, "retryOperations");;
+
 		ExponentialBackOffPolicy backoff = (ExponentialBackOffPolicy) ReflectionTestUtils
 				.getField(retryTemplate, "backOffPolicy");
 		assertEquals(3000, backoff.getInitialInterval());

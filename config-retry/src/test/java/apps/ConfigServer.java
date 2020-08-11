@@ -38,7 +38,7 @@ public class ConfigServer {
 		return new SpringApplicationBuilder(ConfigServer.class)
 				.bannerMode(Mode.OFF)
 				.profiles("native")
-				.properties("server.port=8888",
+				.properties(
 						"spring.cloud.config.server.native.searchLocation:file:./src/test/resources/config/")
 				.run(args);
 	}
