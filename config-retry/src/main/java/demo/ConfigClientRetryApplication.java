@@ -8,10 +8,10 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
  * @author Dave Syer
  */
 @SpringBootApplication
-public class StandaloneClientApplication {
+public class ConfigClientRetryApplication {
 
 	public static void main(String[] args) {
-		new SpringApplicationBuilder(StandaloneClientApplication.class).properties(
+		new SpringApplicationBuilder(ConfigClientRetryApplication.class).properties(
 				"spring.cloud.config.enabled=true").run(args);
 	}
 }

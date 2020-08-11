@@ -17,9 +17,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-public class StandaloneClientApplication implements CommandLineRunner {
+public class EurekaNoWebApplication implements CommandLineRunner {
 
-	private static Log logger = LogFactory.getLog(StandaloneClientApplication.class);
+	private static Log logger = LogFactory.getLog(EurekaNoWebApplication.class);
 
 	@Autowired
 	private DiscoveryClient client;
@@ -31,6 +31,6 @@ public class StandaloneClientApplication implements CommandLineRunner {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(StandaloneClientApplication.class, args);
+		SpringApplication.run(EurekaNoWebApplication.class, args);
 	}
 }

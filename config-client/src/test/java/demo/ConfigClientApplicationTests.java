@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @DirtiesContext
-public class StandaloneClientApplicationTests {
+public class ConfigClientApplicationTests {
 
 	@Autowired
 	private ConfigServicePropertySourceLocator locator;

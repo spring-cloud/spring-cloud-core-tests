@@ -34,7 +34,7 @@ import apps.ConfigServer;
 @SpringBootTest(properties={ "spring.cloud.config.enabled=true",
 		"logging.level.org.springframework.retry=TRACE" })
 @DirtiesContext
-public class StandaloneClientApplicationTests {
+public class ConfigClientRetryApplicationTests {
 
 	@Autowired
 	private ConfigServicePropertySourceLocator locator;

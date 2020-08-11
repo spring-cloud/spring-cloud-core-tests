@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @DirtiesContext
-public class ConfigServerEurekaApplicationTests {
+public class ConfigServerBootstrapApplicationTests {
 
 	@Test
 	public void contextLoads() {
