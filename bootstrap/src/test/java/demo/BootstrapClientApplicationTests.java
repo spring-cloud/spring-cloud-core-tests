@@ -21,7 +21,7 @@ public class BootstrapClientApplicationTests {
 
 	@Test
 	public void contextLoads() throws Exception {
-		assertEquals(2, this.server.getTomcat().getMaxThreads());
+		assertEquals(2, this.server.getTomcat().getThreads().getMax());
 		// The application.yml is never read because spring.config.name=sample
 		assertEquals("application", this.server.getServlet().getApplicationDisplayName());
 	}
