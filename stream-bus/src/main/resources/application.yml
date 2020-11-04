@@ -1,6 +1,9 @@
 spring:
   application:
     name: stream-bus
+  cloud:
+    function:
+      definition: you
 ---
 spring:
   profiles: other

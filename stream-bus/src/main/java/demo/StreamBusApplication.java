@@ -9,7 +9,6 @@ import org.springframework.cloud.stream.messaging.Source;
  * @author Dave Syer
  */
 @SpringBootApplication
-@EnableBinding(Source.class)
 public class StreamBusApplication {
 
 	public static void main(String[] args) {
