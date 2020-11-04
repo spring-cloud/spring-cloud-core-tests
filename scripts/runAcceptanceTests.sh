@@ -20,13 +20,13 @@ function cloudVersion() {
 
 CURRENT_BOOT_VERSION="${CURRENT_BOOT_VERSION:-}"
 CURRENT_CLOUD_VERSION="${CURRENT_CLOUD_VERSION:-}"
-[[ -z "${CURRENT_BOOT_VERSION}" ]] && CURRENT_BOOT_VERSION="$( bootVersion "2.4" )"
-[[ -z "${CURRENT_CLOUD_VERSION}" ]] && CURRENT_CLOUD_VERSION="$( cloudVersion "2020.0.0" )"
+#[[ -z "${CURRENT_BOOT_VERSION}" ]] && CURRENT_BOOT_VERSION="$( bootVersion "2.4" )"
+#[[ -z "${CURRENT_CLOUD_VERSION}" ]] && CURRENT_CLOUD_VERSION="$( cloudVersion "2020.0.0" )"
 
 function build() {
-    echo "Updating parent boot to [${CURRENT_BOOT_VERSION}]"
-    ./mvnw versions:update-parent "-DparentVersion=(,${CURRENT_BOOT_VERSION}]" -DgenerateBackupPoms=false -DallowSnapshots=true
-    echo "Running the build with cloud version [${CURRENT_CLOUD_VERSION}]"
+    #echo "Updating parent boot to [${CURRENT_BOOT_VERSION}]"
+    #./mvnw versions:update-parent "-DparentVersion=(,${CURRENT_BOOT_VERSION}]" -DgenerateBackupPoms=false -DallowSnapshots=true
+    #echo "Running the build with cloud version [${CURRENT_CLOUD_VERSION}]"
     ./mvnw -s .settings.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dspring-cloud.version="${CURRENT_CLOUD_VERSION}" -U -P sonar -nsu --batch-mode -Dmaven.test.redirectTestOutputToFile=true -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn --fail-at-end
 }
 
