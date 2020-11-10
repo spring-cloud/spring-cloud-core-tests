@@ -20,7 +20,8 @@ function cloudVersion() {
 
 CURRENT_BOOT_VERSION="${CURRENT_BOOT_VERSION:-}"
 CURRENT_CLOUD_VERSION="${CURRENT_CLOUD_VERSION:-}"
-[[ -z "${CURRENT_BOOT_VERSION}" ]] && CURRENT_BOOT_VERSION="$( bootVersion "2.4" )"
+#[[ -z "${CURRENT_BOOT_VERSION}" ]] && CURRENT_BOOT_VERSION="$( bootVersion "2.4" )"
+CURRENT_BOOT_VERSION="2.4.0-RC1"
 [[ -z "${CURRENT_CLOUD_VERSION}" ]] && CURRENT_CLOUD_VERSION="$( cloudVersion "2020.0.0" )"
 
 function build() {
