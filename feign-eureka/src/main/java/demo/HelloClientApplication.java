@@ -3,10 +3,11 @@ package demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.cloud.client.DefaultServiceInstance;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
 import org.springframework.cloud.loadbalancer.core.ServiceInstanceListSupplier;
+import org.springframework.cloud.loadbalancer.support.ServiceInstanceListSuppliers;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
@@ -57,8 +58,8 @@ public class HelloClientApplication {
 			//because of this, it doesn't use eureka to lookup the server,
 			// but the classpath is tested
 			Integer port = env.getProperty("local.server.port", Integer.class);
-			return ServiceInstanceListSupplier.fixed(env)
-					.instance("localhost", port, "hello").build();
+			return ServiceInstanceListSuppliers.from("httpbin",
+					new DefaultServiceInstance("hello-1", "hello", "localhost", port, false));
 		}
 
 	}
