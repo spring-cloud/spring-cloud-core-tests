@@ -2,7 +2,9 @@ debug: true
 
 ---
 spring:
-  profiles: default
+  config:
+    activate:
+      on-profile: default
   cloud:
     config:
       uri: '{cipher}10360db84ecacacf224df3334b02c85b4490b94ee6e6469bf86dd077aa6667f9b84ee3b60343f2c32d61dc14141fe5d0'
@@ -11,7 +13,9 @@ encrypt:
 
 ---
 spring:
-  profiles: rsa
+  config:
+    activate:
+      on-profile: rsa
   cloud:
     config:
       uri: '{cipher}AQB1ZzADAe6i2ltd857NEc1utA+D6cHjyVs8LusiwwrpMzpmhhss5NthMnNwPS14fOzqb6PVopuxgeMcgnF+bUkH66V3mOlGz9O2xbhWQdt1DBKmstxelqWDNVuE0pNIC6j7GNqBvKmnK1JaIDz2oclkR/YVcxPl6hSTNKXUc+pyrU7cpWEm3As6MMpmwTEU7hBdqFh73baTvHYOAnBTHQK1F85Om4/nOnVluh+Kh1yBWgzBx1wlASORB2IbzTDOuzeGcKGlWPl/s8O4asLNKylXnJOI0DUyq5nyn89LWz3axaEvKCCyZgztobudEpqNRzrttCb4qQ/mfn+rhC/o5wdJBiK76aj9tObDo5PsfCV5g+ZBrlSqiwm2d8gXN/4D4PD9PRtPYs8SuuKecKDjTzrJ'

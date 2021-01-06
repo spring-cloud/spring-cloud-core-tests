@@ -13,7 +13,9 @@ spring:
 
 ---
 spring:
-  profiles: encrypt
+  config:
+    activate:
+      on-profile: encrypt
   cloud:
     config:
       server:
@@ -25,7 +27,9 @@ encrypt:
 
 ---
 spring:
-  profiles: rsa
+  config:
+    activate:
+      on-profile: rsa
   cloud:
     config:
       server:
