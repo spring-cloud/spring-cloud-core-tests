@@ -68,7 +68,6 @@ public class ConfigClientRetryApplicationTests {
 	}
 
 	@Test
-	@Ignore // see https://github.com/spring-cloud/spring-cloud-core-tests/issues/38
 	public void contextLoads() throws Exception {
 		assertTrue("ConfigServicePropertySourceLocator is not a proxy (so no retry)",
 				AopUtils.isAopProxy(locator));
