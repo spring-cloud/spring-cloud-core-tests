@@ -4,8 +4,12 @@ spring:
   cloud:
     function:
       definition: you
+  config:
+    import: "optional:configserver:"
 ---
 spring:
-  profiles: other
+  config:
+    activate:
+      on-profile: other
 server:
   port: 8081

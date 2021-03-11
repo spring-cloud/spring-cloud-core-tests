@@ -1,6 +1,8 @@
 spring:
   application:
     name: standalone
+  config:
+    import: "optional:configserver:"
 
 server:
   port: 7777

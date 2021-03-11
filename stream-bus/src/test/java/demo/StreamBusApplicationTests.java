@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.bus.BusBridge;
+import org.springframework.cloud.bus.event.Destination;
 import org.springframework.cloud.bus.event.RefreshRemoteApplicationEvent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,9 +28,12 @@ public class StreamBusApplicationTests {
 	@Autowired
 	private MyListener myListener;
 
+	@Autowired
+	private Destination.Factory factory;
+
 	@Test
-	public void business() throws Exception {
-		RefreshRemoteApplicationEvent event = new RefreshRemoteApplicationEvent(this, "me", "you");
+	public void business() {
+		RefreshRemoteApplicationEvent event = new RefreshRemoteApplicationEvent(this, "me", factory.getDestination("you"));
 		this.bus.send(event);
 		RefreshRemoteApplicationEvent event1 = myListener.refreshRemoteApplicationEvent;
 		assertThat(event1).isEqualTo(event);
