@@ -7,6 +7,7 @@ spring:
         bootstrap: true
         git:
           uri: https://github.com/spring-cloud-samples/config-repo
+          default-label: main
 
 ---
 spring:
