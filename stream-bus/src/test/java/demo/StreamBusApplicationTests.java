@@ -1,59 +1,88 @@
 package demo;
 
-import java.util.function.Consumer;
+import java.util.HashMap;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.testcontainers.containers.RabbitMQContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cloud.bus.BusBridge;
-import org.springframework.cloud.bus.event.Destination;
-import org.springframework.cloud.bus.event.RefreshRemoteApplicationEvent;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.cloud.bus.event.EnvironmentChangeRemoteApplicationEvent;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.test.web.reactive.server.WebTestClient;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = {StreamBusApplicationTests.TestConfig.class, StreamBusApplication.class}, properties = "spring.cloud.bus.destination=you-in-0")
-@DirtiesContext
+@SpringBootTest(webEnvironment = RANDOM_PORT, properties = { "management.endpoints.web.exposure.include=*",
+		"logging.level.org.springframework.cloud.bus=TRACE", "spring.cloud.bus.id=app:1",
+		"spring.autoconfigure.exclude=org.springframework.cloud.stream.test.binder.TestSupportBinderAutoConfiguration" })
+@Testcontainers
 public class StreamBusApplicationTests {
+	@Container
+	private static final RabbitMQContainer rabbitMQContainer = new RabbitMQContainer();
 
-	@Autowired
-	private BusBridge bus;
+	private static ConfigurableApplicationContext context;
 
-	@Autowired
-	private MyListener myListener;
-
-	@Autowired
-	private Destination.Factory factory;
-
-	@Test
-	public void business() {
-		RefreshRemoteApplicationEvent event = new RefreshRemoteApplicationEvent(this, "me", factory.getDestination("you"));
-		this.bus.send(event);
-		RefreshRemoteApplicationEvent event1 = myListener.refreshRemoteApplicationEvent;
-		assertThat(event1).isEqualTo(event);
+	@DynamicPropertySource
+	static void properties(DynamicPropertyRegistry registry) {
+		registry.add("spring.rabbitmq.host", rabbitMQContainer::getHost);
+		registry.add("spring.rabbitmq.port", rabbitMQContainer::getAmqpPort);
 	}
 
-	@Configuration
-	static class TestConfig {
-		@Bean(name = "you")
-		MyListener myListener() {
-			return new MyListener();
+	@BeforeAll
+	static void before() {
+		context = new SpringApplicationBuilder(TestConfig.class).properties("server.port=0",
+				"spring.rabbitmq.host=" + rabbitMQContainer.getHost(),
+				"spring.rabbitmq.port=" + rabbitMQContainer.getAmqpPort(),
+				"management.endpoints.web.exposure.include=*", "spring.cloud.bus.id=app:2",
+				"spring.autoconfigure.exclude=org.springframework.cloud.stream.test.binder.TestSupportBinderAutoConfiguration")
+				.run();
+	}
+
+	@AfterAll
+	static void after() {
+		if (context != null) {
+			context.close();
 		}
 	}
-}
 
-class MyListener implements Consumer<RefreshRemoteApplicationEvent> {
-
-	RefreshRemoteApplicationEvent refreshRemoteApplicationEvent;
-
-	@Override
-	public void accept(RefreshRemoteApplicationEvent refreshRemoteApplicationEvent) {
-		this.refreshRemoteApplicationEvent = refreshRemoteApplicationEvent;
+	@Test
+	void remoteEventsAreSentViaAmqp(@Autowired WebTestClient client, @Autowired TestConfig testConfig)
+			throws InterruptedException {
+		assertThat(rabbitMQContainer.isRunning());
+		HashMap<String, String> map = new HashMap<>();
+		map.put("name", "foo");
+		map.put("value", "bar");
+		client.post().uri("/actuator/busenv").bodyValue(map).exchange().expectStatus().is2xxSuccessful();
+		TestConfig remoteTestConfig = context.getBean(TestConfig.class);
+		assertThat(remoteTestConfig.latch.await(5, TimeUnit.SECONDS)).isTrue();
+		assertThat(testConfig.latch.await(5, TimeUnit.SECONDS)).isTrue();
 	}
+
+	@SpringBootConfiguration
+	@EnableAutoConfiguration
+	static class TestConfig implements ApplicationListener<EnvironmentChangeRemoteApplicationEvent> {
+
+		CountDownLatch latch = new CountDownLatch(1);
+
+		@Override
+		public void onApplicationEvent(EnvironmentChangeRemoteApplicationEvent event) {
+			latch.countDown();
+		}
+
+	}
+
 }

@@ -4,8 +4,6 @@ spring:
   cloud:
     function:
       definition: you
-  config:
-    import: "optional:configserver:"
 ---
 spring:
   config:
