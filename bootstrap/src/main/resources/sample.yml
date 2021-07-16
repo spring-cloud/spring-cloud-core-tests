@@ -1,4 +1,5 @@
 server:
   port: 8686
   tomcat:
-    max-threads: 2
+    threads:
+      max: 2
