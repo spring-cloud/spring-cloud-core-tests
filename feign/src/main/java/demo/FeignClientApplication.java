@@ -4,8 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @SpringBootApplication
 @EnableFeignClients
@@ -17,8 +16,7 @@ public class FeignClientApplication {
 }
 
 @FeignClient(name = "example", url = "https://example.com")
-@RequestMapping("/")
 interface RestClient {
-	@RequestMapping(method = RequestMethod.GET)
+	@GetMapping("/")
 	String hello();
 }
