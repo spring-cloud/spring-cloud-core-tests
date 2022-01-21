@@ -4,11 +4,11 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.0-SNAPSHOT</version>
+		<version>3.0.0-SNAPSHOT</version>
 		<relativePath/>
 	</parent>
 	<artifactId>spring-cloud-tests</artifactId>
-	<version>2021.0.0-SNAPSHOT</version>
+	<version>2022.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Spring Cloud Core Tests</name>
 	<description>Spring Cloud Core Tests</description>
@@ -25,24 +25,24 @@
 		<module>config-retry</module>
 		<module>configserver</module>
 		<module>configserver-bootstrap</module>
-		<module>configserver-eureka</module>
-		<module>eureka-client</module>
-		<module>eureka-first</module>
-		<module>eureka-noweb</module>
-		<module>eureka-server</module>
+		<!--<module>configserver-eureka</module>-->
+		<!--<module>eureka-client</module>-->
+		<!--<module>eureka-first</module>-->
+		<!--<module>eureka-noweb</module>-->
+		<!--<module>eureka-server</module>-->
 		<module>feign</module>
 		<module>feign-eager-instantiation</module>
-		<module>feign-eureka</module>
+		<!--<module>feign-eureka</module>-->
 		<!--<module>netflix-sidecar</module>-->
 		<module>noweb</module>
 		<!-- TODO: replace ribbon with spring cloud loadbalancer -->
 		<!--<module>oauth2-ribbon</module>
 		<module>ribbon-default-config</module>
 		<module>ribbon-eureka</module>-->
-		<module>sleuth</module>
+		<!--<module>sleuth</module>-->
 		<module>stream-bus</module>
 		<module>vanilla</module>
-		<module>zipkin</module>
+		<!--<module>zipkin</module>-->
 	</modules>
 	<build>
 		<plugins>
