@@ -1,24 +1,22 @@
 package demo;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.concurrent.Executors;
 
+import apps.ConfigServer;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.springframework.aop.framework.Advised;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.config.client.ConfigServicePropertySourceLocator;
+import org.springframework.cloud.test.TestSocketUtils;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.retry.annotation.AnnotationAwareRetryOperationsInterceptor;
 import org.springframework.retry.backoff.ExponentialBackOffPolicy;
@@ -27,9 +25,9 @@ import org.springframework.retry.support.RetryTemplate;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.util.ReflectionTestUtils;
-import org.springframework.util.SocketUtils;
 
-import apps.ConfigServer;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 // Explicitly enable config client because test classpath has config server on it
@@ -45,7 +43,7 @@ public class ConfigClientRetryApplicationTests {
 
 	@BeforeClass
 	public static void delayConfigServer() {
-		int port = SocketUtils.findAvailableTcpPort();
+		int port = TestSocketUtils.findAvailableTcpPort();
 		System.setProperty("spring.cloud.config.uri", "http://localhost:" + port);
 		Executors.newSingleThreadExecutor().execute(new Runnable() {
 			@Override
