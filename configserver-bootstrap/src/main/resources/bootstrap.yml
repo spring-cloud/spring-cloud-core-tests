@@ -11,7 +11,9 @@ spring:
 
 ---
 spring:
-  profiles: native
+  config:
+    activate:
+      on-profile: native
   cloud:
     config:
       server:

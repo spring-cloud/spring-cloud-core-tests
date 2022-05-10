@@ -2,7 +2,6 @@ spring:
   application:
     name: bus
 ---
-spring:
-  profiles: other
+spring.config.activate.on-profile: other
 server:
   port: 8081
