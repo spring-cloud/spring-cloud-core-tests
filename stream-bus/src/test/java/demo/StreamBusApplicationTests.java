@@ -27,8 +27,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 @SpringBootTest(webEnvironment = RANDOM_PORT, properties = { "management.endpoints.web.exposure.include=*",
-		"logging.level.org.springframework.cloud.bus=TRACE", "spring.cloud.bus.id=app:1",
-		"spring.autoconfigure.exclude=org.springframework.cloud.stream.test.binder.TestSupportBinderAutoConfiguration" })
+		"logging.level.org.springframework.cloud.bus=TRACE", "spring.cloud.bus.id=app:1"})
 @Testcontainers
 public class StreamBusApplicationTests {
 	@Container
