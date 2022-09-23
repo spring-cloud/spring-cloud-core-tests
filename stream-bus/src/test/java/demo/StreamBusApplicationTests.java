@@ -46,8 +46,7 @@ public class StreamBusApplicationTests {
 		context = new SpringApplicationBuilder(TestConfig.class).properties("server.port=0",
 				"spring.rabbitmq.host=" + rabbitMQContainer.getHost(),
 				"spring.rabbitmq.port=" + rabbitMQContainer.getAmqpPort(),
-				"management.endpoints.web.exposure.include=*", "spring.cloud.bus.id=app:2",
-				"spring.autoconfigure.exclude=org.springframework.cloud.stream.test.binder.TestSupportBinderAutoConfiguration")
+				"management.endpoints.web.exposure.include=*", "spring.cloud.bus.id=app:2")
 				.run();
 	}
 
